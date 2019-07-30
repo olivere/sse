@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:1.17
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./etc/nginx:/etc/nginx
+      - ./etc/nginx/localhost.crt:/etc/nginx/localhost.crt
+      - ./etc/nginx/localhost.key:/etc/nginx/localhost.key
+  sse:
+    build:
+      context: .
+    entrypoint:
+      /sse
